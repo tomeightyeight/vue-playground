@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Task List ({{ totalItems }})</h1>
+    <h1>Task List <span v-if="">({{ totalItems }})</span></h1>
 
     <ul>
       <li :class="{ 'completed': item.completed }" v-for="item in list" @click="toggleCompleted(item)">{{ item.description }}</li>
@@ -18,7 +18,9 @@ export default {
 
   computed: {
     totalItems: function (item) {
-      return this.list.length
+      return this.list.filter(item => {
+        return !item.completed
+      }).length
     }
   },
 
