@@ -1,16 +1,29 @@
 <template>
   <div id="app">
-    <hello></hello>
+    <task-list :list="tasks"></task-list>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
+'use strict'
+
+import TaskList from './components/TaskList.vue'
 
 export default {
   name: 'app',
+
   components: {
-    Hello
+    TaskList
+  },
+
+  data: function () {
+    return {
+      tasks: [
+        { description: 'Task 1', completed: false },
+        { description: 'Task 2', completed: false },
+        { description: 'Task 3', completed: true }
+      ]
+    }
   }
 }
 </script>
@@ -22,9 +35,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, 50%);
 }
 </style>
