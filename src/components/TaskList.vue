@@ -3,7 +3,7 @@
     <h1>Task List <span v-show=" ! remaining">({{ totalItems }})</span></h1>
 
     <ul v-if=" ! remaining">
-      <li v-for="item in tasks" :class="{ 'completed': item.completed }">
+      <li v-for="(item, index) in tasks" :class="{ 'completed': item.completed }">
         <span @click="toggleCompleted(item)">{{ item.description }}</span>
         <button @click="deleteTask(item)">X</button>
       </li>
@@ -44,10 +44,8 @@ export default {
       return ! item.completed;
     },
 
-    deleteTask: function(item) {
-      console.log(item);
-
-      this.$emit('delete', item);
+    deleteTask: function(index) {
+      this.$emit('delete', index);
     }
   }
 };

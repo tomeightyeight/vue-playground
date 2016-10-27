@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <task-list :tasks="tasks" :v-on:delete="deleteTask"></task-list>
+    <task-list :tasks="tasks" @delete="deleteTask"></task-list>
     <input v-model="newTask">
-    <button @click.prevent="add">Add</button>
+    <button @click.prevent="addTask">Add</button>
     <button @click.prevent="fetch">Fetch</button>
     <button @click.prevent="save">Save</button>
   </div>
@@ -50,10 +50,8 @@ export default {
       // Persist tasks object
     },
 
-    deleteTask: function(item) {
-      console.log(item);
-
-      this.tasks.$remove(item);
+    deleteTask: function(index) {
+      this.tasks.splice(index, 1);
     }
   }
 };
