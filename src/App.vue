@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <task-list :list="tasks"></task-list>
-    <input v-model="newtask">
+    <task-list :tasks="tasks" :v-on:delete="deleteTask"></task-list>
+    <input v-model="newTask">
     <button @click.prevent="add">Add</button>
     <button @click.prevent="fetch">Fetch</button>
     <button @click.prevent="save">Save</button>
@@ -22,7 +22,7 @@ export default {
 
   data: function() {
     return {
-      newtask: '',
+      newTask: '',
 
       tasks: [
         { description: 'Task 1', completed: false },
@@ -33,11 +33,13 @@ export default {
   },
 
   methods: {
-    add: function() {
+    addTask: function() {
       this.tasks.push({
-        description: this.newtask,
+        description: this.newTask,
         completed: false
       });
+
+      this.newtask = '';
     },
 
     fetch: function() {
@@ -46,6 +48,12 @@ export default {
 
     save: function() {
       // Persist tasks object
+    },
+
+    deleteTask: function(item) {
+      console.log(item);
+
+      this.tasks.$remove(item);
     }
   }
 };

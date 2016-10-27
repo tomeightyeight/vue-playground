@@ -3,7 +3,10 @@
     <h1>Task List <span v-show=" ! remaining">({{ totalItems }})</span></h1>
 
     <ul v-if=" ! remaining">
-      <li :class="{ 'completed': item.completed }" v-for="item in list"><span @click="toggleCompleted(item)">{{ item.description }}</span><button @click="$parent.tasks.$remove(item)">X</button></li>
+      <li v-for="item in tasks" :class="{ 'completed': item.completed }">
+        <span @click="toggleCompleted(item)">{{ item.description }}</span>
+        <button @click="deleteTask(item)">X</button>
+      </li>
     </ul>
 
     <p v-else>There are no tasks to display.</p>
@@ -16,11 +19,11 @@
 export default {
   name: 'task-list',
 
-  props: ['list'],
+  props: ['tasks'],
 
   computed: {
     totalItems: function() {
-      return this.list.length;
+      return this.tasks.length;
     },
 
     remaining: true
@@ -28,7 +31,7 @@ export default {
 
   methods: {
     totalCompleted: function() {
-      return this.list.filter(item => {
+      return this.tasks.filter(item => {
         return item.completed;
       }).length;
     },
@@ -41,8 +44,10 @@ export default {
       return ! item.completed;
     },
 
-    remove: function() {
-      // this.$parent.tasks.$remove(item);
+    deleteTask: function(item) {
+      console.log(item);
+
+      this.$emit('delete', item);
     }
   }
 };

@@ -11,7 +11,7 @@ new Vue({
   components: { App },
 
   http: {
-    root: 'http://bozboz2.tom/api',
+    root: '',
     headers: {
       //
     }
