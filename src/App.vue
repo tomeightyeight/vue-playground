@@ -39,7 +39,7 @@ export default {
         completed: false
       });
 
-      this.newtask = '';
+      this.newTask = '';
     },
 
     fetch: function() {

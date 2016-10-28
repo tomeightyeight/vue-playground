@@ -5,7 +5,7 @@
     <ul v-if=" ! remaining">
       <li v-for="(item, index) in tasks" :class="{ 'completed': item.completed }">
         <span @click="toggleCompleted(item)">{{ item.description }}</span>
-        <button @click="deleteTask(item)">X</button>
+        <button @click="deleteTask(index)">X</button>
       </li>
     </ul>
 
