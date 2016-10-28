@@ -12,6 +12,7 @@
 'use strict';
 
 import TaskList from './components/TaskList.vue';
+import uuid from './utils/uuid.js';
 
 export default {
   name: 'app',
@@ -25,16 +26,21 @@ export default {
       newTask: '',
 
       tasks: [
-        { description: 'Task 1', completed: false },
-        { description: 'Task 2', completed: false },
-        { description: 'Task 3', completed: true }
+        { id: uuid(), description: 'Task 1', completed: false },
+        { id: uuid(), description: 'Task 2', completed: false },
+        { id: uuid(), description: 'Task 3', completed: true }
       ]
     };
   },
 
   methods: {
     addTask: function() {
+      if (this.newTask === '') {
+        return;
+      }
+
       this.tasks.push({
+        id: uuid(),
         description: this.newTask,
         completed: false
       });

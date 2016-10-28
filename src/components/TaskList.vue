@@ -3,10 +3,12 @@
     <h1>Task List <span v-show="remaining">({{ remaining }})</span></h1>
 
     <ul v-if="total">
-      <li v-for="(item, index) in tasks" :class="{ 'completed': item.completed }">
-        <span @click="toggleCompleted(item)">{{ item.description }}</span>
-        <button @click="deleteTask(index)">X</button>
-      </li>
+      <transition-group name="fade">
+        <li v-for="(item, index) in tasks" :key="item.id" :class="{ 'completed': item.completed }">
+          <span @click="toggleCompleted(item)">{{ item.description }}</span>
+          <button @click="deleteTask(index)">X</button>
+        </li>
+      </transition-group>
     </ul>
 
     <p v-else>There are no tasks to display.</p>
@@ -60,5 +62,13 @@ ul {
 
 .completed {
   text-decoration: line-through;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+
+.fade-enter, .fade-leave-active {
+  opacity: 0;
 }
 </style>
