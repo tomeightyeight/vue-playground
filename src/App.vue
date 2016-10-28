@@ -49,7 +49,7 @@ export default {
     },
 
     fetch: function() {
-      this.$http.get('http://bozboz2.tom/api/tasks')
+      this.$http.get('/api/tasks')
         .then(response => {
           this.tasks = response.body;
         }, error => {
@@ -58,7 +58,7 @@ export default {
     },
 
     save: function() {
-      this.$http.put('http://bozboz2.tom/api/tasks', this.tasks)
+      this.$http.put('/api/tasks', this.tasks)
         .then(() => {
           alert('Task list saved!');
         }, error => {
