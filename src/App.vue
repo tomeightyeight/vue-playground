@@ -52,7 +52,12 @@ export default {
     },
 
     save: function() {
-      // Persist tasks object
+      this.$http.put('http://bozboz2.tom/api/tasks', this.tasks)
+        .then(() => {
+          alert('Task list saved!');
+        }, error => {
+          console.log(error);
+        });
     },
 
     deleteTask: function(index) {
