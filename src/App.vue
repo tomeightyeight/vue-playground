@@ -73,12 +73,20 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  text-align: left;
   color: #2c3e50;
+  margin: 2rem;
+  background-color: #eee;
+  padding: 2rem;
+  border-radius: .5rem;
+}
+
+h1 {
+  margin-top: 0;
 }
 </style>
