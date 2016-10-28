@@ -43,7 +43,12 @@ export default {
     },
 
     fetch: function() {
-      // Fetch tasks from endpoint
+      this.$http.get('http://bozboz2.tom/api/tasks')
+        .then(response => {
+          this.tasks = response.body;
+        }, error => {
+          console.log(error);
+        });
     },
 
     save: function() {
