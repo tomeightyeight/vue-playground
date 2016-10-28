@@ -85,8 +85,4 @@ export default {
   padding: 2rem;
   border-radius: .5rem;
 }
-
-h1 {
-  margin-top: 0;
-}
 </style>

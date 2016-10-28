@@ -56,6 +56,10 @@ export default {
 </script>
 
 <style scoped>
+h1 {
+  margin-top: 0;
+}
+
 ul {
   list-style-type: none;
 }
