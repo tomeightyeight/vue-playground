@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1>Task List <span v-show=" ! remaining">({{ totalItems }})</span></h1>
+    <h1>Task List <span v-show="remaining">({{ remaining }})</span></h1>
 
-    <ul v-if=" ! remaining">
+    <ul v-if="total">
       <li v-for="(item, index) in tasks" :class="{ 'completed': item.completed }">
         <span @click="toggleCompleted(item)">{{ item.description }}</span>
         <button @click="deleteTask(index)">X</button>
@@ -22,17 +22,19 @@ export default {
   props: ['tasks'],
 
   computed: {
-    totalItems: function() {
-      return this.tasks.length;
+    remaining: function() {
+      return this.totalCompleted();
     },
 
-    remaining: true
+    total: function() {
+      return this.tasks.length;
+    }
   },
 
   methods: {
     totalCompleted: function() {
       return this.tasks.filter(item => {
-        return item.completed;
+        return ! item.completed;
       }).length;
     },
 
