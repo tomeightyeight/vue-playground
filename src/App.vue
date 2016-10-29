@@ -2,9 +2,9 @@
   <div id="app">
     <task-list :tasks="tasks" @delete="deleteTask"></task-list>
     <input v-model="newTask">
-    <button @click.prevent="addTask">Add</button>
-    <button @click.prevent="fetch">Fetch</button>
-    <button @click.prevent="save">Save</button>
+    <button @click="addTask">Add</button>
+    <button @click="fetch">Fetch</button>
+    <button @click="save">Save</button>
   </div>
 </template>
 
