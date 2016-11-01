@@ -8,7 +8,9 @@
         <router-link to="/task-list">Task List</router-link>
       </li>
     </ul>
-    <router-view></router-view>
+    <transition name="fade">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -39,5 +41,13 @@ export default {
 
 .nav li {
   display: inline-block;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+
+.fade-enter, .fade-leave-active {
+  opacity: 0;
 }
 </style>
