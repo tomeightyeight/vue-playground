@@ -5,8 +5,8 @@
     <ul v-if="total">
       <transition-group name="fade">
         <li :class="{ 'completed': item.completed }"
-            v-for="(item, index) in tasks" 
-            :key="item.id" 
+            v-for="(item, index) in tasks"
+            :key="item.id"
         >
           <span @click="toggleCompleted(item)">{{ item.description }}</span>
           <button @click="deleteTask(index)">X</button>

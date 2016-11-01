@@ -2,22 +2,30 @@
 
 import Vue from 'vue';
 import VueResource from 'vue-resource';
+import VueRouter from 'vue-router';
 import App from './App';
 
-/* eslint-disable no-new */
+// Bind additional packages to vue
+Vue.use(VueResource);
+Vue.use(VueRouter);
+
+const Router = new VueRouter({
+  routes: [
+    { path: '/', component: App }
+  ]
+});
+
+// Main app instance
 new Vue({
-  el: '#app',
+  router: Router,
 
-  template: '<App/>',
+  template: '<router-view/>',
 
-  components: { App },
-
+  // Global options for VueResource
   http: {
     root: '',
     headers: {
       //
     }
   }
-});
-
-Vue.use(VueResource);
+}).$mount('#app');
