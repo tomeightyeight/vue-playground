@@ -15,16 +15,8 @@
 <script>
 'use strict';
 
-import Store from './stores/Store';
-
 export default {
-  name: 'app',
-
-  data: function() {
-    return {
-      sharedState: Store.state
-    };
-  }
+  name: 'app'
 };
 </script>
 
