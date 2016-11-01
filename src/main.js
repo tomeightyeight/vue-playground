@@ -4,8 +4,7 @@ import Vue from 'vue';
 import VueResource from 'vue-resource';
 import VueRouter from 'vue-router';
 
-import TaskListView from './views/TaskListView';
-import IndexView from './views/IndexView';
+import DefaultRouter from './routers/DefaultRouter';
 
 import App from './App';
 
@@ -13,19 +12,9 @@ import App from './App';
 Vue.use(VueResource);
 Vue.use(VueRouter);
 
-const Router = new VueRouter({
-  mode: 'history',
-
-  routes: [
-    { path: '/', component: IndexView },
-    { path: '/task-list', component: TaskListView },
-    { path: '*', component: IndexView }
-  ]
-});
-
 // Main app instance
 new Vue({
-  router: Router,
+  router: DefaultRouter,
 
   template: '<App/>',
 

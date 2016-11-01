@@ -3,6 +3,8 @@
 </template>
 
 <script>
+'use strict';
+
 import Hello from '../components/Hello';
 
 export default {

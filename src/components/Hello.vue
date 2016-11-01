@@ -3,8 +3,11 @@
 </template>
 
 <script>
+'use strict';
+
 export default {
   name: 'hello',
+
   data () {
     return {
       msg: 'Hello, World!'
