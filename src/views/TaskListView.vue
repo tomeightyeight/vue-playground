@@ -51,28 +51,12 @@ export default {
       Store.deleteTask(id);
     },
 
-    /**
-     * Fetch tasks from endpoind - move me to global Store
-     */
     fetch: function() {
-      this.$http.get('/api/tasks')
-        .then(response => {
-          this.tasks = response.body;
-        }, error => {
-          console.log(error);
-        });
+      Store.fetchTasks();
     },
 
-    /**
-     * Save tasks - move me to global Store
-     */
     save: function() {
-      this.$http.put('/api/tasks', this.tasks)
-        .then(() => {
-          alert('Task list saved!');
-        }, error => {
-          console.log(error);
-        });
+      Store.saveTasks();
     }
   }
 };

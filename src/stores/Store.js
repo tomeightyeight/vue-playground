@@ -19,5 +19,29 @@ export default {
     this.state.tasks = this.state.tasks.filter(item => {
       return item.id !== id;
     });
+  },
+
+  /**
+   * Fetch tasks from end point
+   */
+  fetchTasks: function() {
+    this.$http.get('/api/tasks')
+      .then(response => {
+        this.state.tasks = response.body;
+      }, error => {
+        console.log(error);
+      });
+  },
+
+  /**
+   * Persist tasks to server via end point
+   */
+  saveTasks: function() {
+    this.$http.put('/api/tasks', this.state.tasks)
+      .then(() => {
+        alert('Task list saved!');
+      }, error => {
+        console.log(error);
+      });
   }
 };
