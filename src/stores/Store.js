@@ -11,10 +11,20 @@ export default {
     ]
   },
 
-  addTask: function(task) {
-    this.state.tasks.push(task);
+  /**
+   * Add a new task to the local store
+   */
+  addTask: function(description, completed = false) {
+    this.state.tasks.push({
+      id: uuid(),
+      description: description,
+      completed: completed
+    });
   },
 
+  /**
+   * Delete a task from the local store by ID
+   */
   deleteTask: function(id) {
     this.state.tasks = this.state.tasks.filter(item => {
       return item.id !== id;

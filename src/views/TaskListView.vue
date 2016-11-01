@@ -13,7 +13,6 @@
 
 import TaskList from '../components/TaskList.vue';
 import Store from '../stores/Store';
-import uuid from '../utils/uuid.js';
 
 export default {
   name: 'task-list-view',
@@ -38,11 +37,7 @@ export default {
         return;
       }
 
-      Store.addTask({
-        id: uuid(),
-        description: this.privateState.newTask,
-        completed: false
-      });
+      Store.addTask(this.privateState.newTask, false);
 
       this.privateState.newTask = '';
     },
