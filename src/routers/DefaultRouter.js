@@ -10,6 +10,7 @@ const Router = new VueRouter({
 
   routes: [
     { path: '/', component: IndexView },
+    { path: '/hello/:name', component: IndexView },
     { path: '/task-list', component: TaskListView },
     { path: '*', component: IndexView }
   ]

@@ -1,5 +1,5 @@
 <template>
-  <div>{{ msg }}</div>
+  <div>Hello, {{ name }}</div>
 </template>
 
 <script>
@@ -10,8 +10,18 @@ export default {
 
   data () {
     return {
-      msg: 'Hello, World!'
+      defaultName: 'World'
     };
+  },
+
+  computed: {
+    name: function() {
+      if (typeof this.$route.params.name !== 'undefined') {
+        return this.$route.params.name;
+      }
+
+      return this.defaultName;
+    }
   }
 };
 </script>
