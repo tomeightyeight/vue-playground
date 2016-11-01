@@ -1,7 +1,7 @@
 {
-  "name": "vue-playground",
+  "name": "vue-todo",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "",
   "author": "Tom Humphris <tom@muska.co.uk>",
   "private": true,
   "scripts": {
