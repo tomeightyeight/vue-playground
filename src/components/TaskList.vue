@@ -9,7 +9,7 @@
             :key="item.id"
         >
           <span @click="toggleCompleted(item)">{{ item.description }}</span>
-          <button @click="deleteTask(index)">X</button>
+          <button @click="deleteTask(item.id)">X</button>
         </li>
       </transition-group>
     </ul>

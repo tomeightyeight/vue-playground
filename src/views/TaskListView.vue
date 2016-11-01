@@ -1,7 +1,7 @@
 <template>
   <div>
-    <task-list :tasks="tasks" @delete="deleteTask"></task-list>
-    <input v-model="newTask">
+    <task-list :tasks="sharedState.tasks" @delete="deleteTask"></task-list>
+    <input v-model="privateState.newTask">
     <button @click="addTask">Add</button>
     <button @click="fetch">Fetch</button>
     <button @click="save">Save</button>
@@ -12,6 +12,7 @@
 'use strict';
 
 import TaskList from '../components/TaskList.vue';
+import Store from '../stores/Store';
 import uuid from '../utils/uuid.js';
 
 export default {
@@ -23,31 +24,36 @@ export default {
 
   data: function() {
     return {
-      newTask: '',
+      privateState: {
+        newTask: ''
+      },
 
-      tasks: [
-        { id: uuid(), description: 'Task 1', completed: false },
-        { id: uuid(), description: 'Task 2', completed: false },
-        { id: uuid(), description: 'Task 3', completed: true }
-      ]
+      sharedState: Store.state
     };
   },
 
   methods: {
     addTask: function() {
-      if (this.newTask === '') {
+      if (this.privateState.newTask === '') {
         return;
       }
 
-      this.tasks.push({
+      Store.addTask({
         id: uuid(),
-        description: this.newTask,
+        description: this.privateState.newTask,
         completed: false
       });
 
-      this.newTask = '';
+      this.privateState.newTask = '';
     },
 
+    deleteTask: function(id) {
+      Store.deleteTask(id);
+    },
+
+    /**
+     * Fetch tasks from endpoind - move me to global Store
+     */
     fetch: function() {
       this.$http.get('/api/tasks')
         .then(response => {
@@ -57,6 +63,9 @@ export default {
         });
     },
 
+    /**
+     * Save tasks - move me to global Store
+     */
     save: function() {
       this.$http.put('/api/tasks', this.tasks)
         .then(() => {
@@ -64,10 +73,6 @@ export default {
         }, error => {
           console.log(error);
         });
-    },
-
-    deleteTask: function(index) {
-      this.tasks.splice(index, 1);
     }
   }
 };
