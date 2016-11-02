@@ -55,6 +55,32 @@ const Store = new Vuex.Store({
     [REPLACE_TASKS]: function(state, payload) {
       state.tasks = payload.tasks;
     }
+  },
+
+  actions: {
+    /**
+     * Fetch tasks from end point
+     */
+    fetchTasks: function({ commit }) {
+      this.$http.get('/api/tasks')
+        .then(response => {
+          commit(REPLACE_TASKS, response.body);
+        }, error => {
+          console.log(error);
+        });
+    },
+
+    /**
+     * Persist tasks to server via end point
+     */
+    saveTasks: function({ state }) {
+      this.$http.put('/api/tasks', state.tasks)
+        .then(() => {
+          alert('Task list saved!');
+        }, error => {
+          console.log(error);
+        });
+    }
   }
 });
 
