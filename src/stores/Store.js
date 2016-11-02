@@ -17,7 +17,7 @@ import {
 Vue.use(VueResource);
 Vue.use(Vuex);
 
-const Store = new Vuex.Store({
+export default new Vuex.Store({
   state: {
     tasks: [
       // { id: uuid(), description: 'Task 1', completed: false },
@@ -87,5 +87,3 @@ const Store = new Vuex.Store({
     }
   }
 });
-
-export default Store;

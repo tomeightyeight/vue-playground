@@ -5,7 +5,7 @@ import VueRouter from 'vue-router';
 import TaskListView from '../views/TaskListView';
 import IndexView from '../views/IndexView';
 
-const Router = new VueRouter({
+export default new VueRouter({
   mode: 'history',
 
   routes: [
@@ -15,5 +15,3 @@ const Router = new VueRouter({
     { path: '*', component: IndexView }
   ]
 });
-
-export default Router;
