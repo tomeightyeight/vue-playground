@@ -18,9 +18,9 @@ Vue.use(Vuex);
 const Store = new Vuex.Store({
   state: {
     tasks: [
-      { id: uuid(), description: 'Task 1', completed: false },
-      { id: uuid(), description: 'Task 2', completed: false },
-      { id: uuid(), description: 'Task 3', completed: true }
+      // { id: uuid(), description: 'Task 1', completed: false },
+      // { id: uuid(), description: 'Task 2', completed: false },
+      // { id: uuid(), description: 'Task 3', completed: true }
     ]
   },
 
