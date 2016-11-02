@@ -1,6 +1,6 @@
 'use strict';
 
-import './polyfills/find';
+import './polyfills/Array.find';
 
 import Vue from 'vue';
 import VueResource from 'vue-resource';
