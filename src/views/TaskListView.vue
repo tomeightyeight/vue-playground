@@ -68,12 +68,31 @@ export default {
       });
     },
 
+    /**
+     * Fetch tasks from end point
+     */
     fetch: function() {
-      this.$store.commit('fetchTasks');
+      this.$http.get('/api/tasks')
+        .then(response => {
+          this.$store.commit({
+            type: 'replaceTasks',
+            tasks: response.body
+          });
+        }, error => {
+          console.log(error);
+        });
     },
 
+    /**
+     * Persist tasks to server via end point
+     */
     save: function() {
-      this.$store.commit('saveTasks');
+      this.$http.put('/api/tasks', this.tasks)
+        .then(() => {
+          alert('Task list saved!');
+        }, error => {
+          console.log(error);
+        });
     }
   }
 };
