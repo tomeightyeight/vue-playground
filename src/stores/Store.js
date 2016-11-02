@@ -49,7 +49,7 @@ export default new Vuex.Store({
      * Toggle the completed state of a specific task
      */
     [TOGGLE_COMPLETED] (state, payload) {
-      let task = state.tasks.find(item => item.id == payload.id);
+      const task = state.tasks.find(item => item.id == payload.id);
       task.completed = ! task.completed;
     },
 
