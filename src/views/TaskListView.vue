@@ -1,6 +1,6 @@
 <template>
   <div>
-    <task-list :tasks="tasks" @delete="deleteTask"></task-list>
+    <task-list :tasks="tasks" @deleteTask="deleteTask" @toggleCompleted="toggleCompleted"></task-list>
     <input v-model="privateState.newTask">
     <button @click="addTask">Add</button>
     <button @click="fetch">Fetch</button>
@@ -25,9 +25,7 @@ export default {
     return {
       privateState: {
         newTask: ''
-      },
-
-      tasks: []
+      }
     };
   },
 
@@ -56,9 +54,16 @@ export default {
       this.privateState.newTask = '';
     },
 
-    deleteTask: function(id) {
+    deleteTask: function(index) {
       this.$store.commit({
         type: 'deleteTask',
+        index: index
+      });
+    },
+
+    toggleCompleted: function(id) {
+      this.$store.commit({
+        type: 'toggleCompleted',
         id: id
       });
     },

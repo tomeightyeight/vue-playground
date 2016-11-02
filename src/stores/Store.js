@@ -28,12 +28,18 @@ const Store = new Vuex.Store({
     },
 
     /**
-     * Delete a task from the local store by ID
+     * Delete a task from the local store by index
      */
     deleteTask: function(state, payload) {
-      state.tasks = state.tasks.filter(item => {
-        return item.id !== payload.id;
-      });
+      state.tasks.splice(payload.index, 1);
+    },
+
+    /**
+     * Toggle the completed state of a specific task
+     */
+    toggleCompleted: function(state, payload) {
+      let task = state.tasks.find(item => item.id == payload.id);
+      task.completed = ! task.completed;
     },
 
     /**

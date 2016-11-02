@@ -8,8 +8,8 @@
             v-for="(item, index) in tasks"
             :key="item.id"
         >
-          <span @click="toggleCompleted(item)">{{ item.description }}</span>
-          <button @click="deleteTask(item.id)">X</button>
+          <span @click="toggleCompleted(item.id)">{{ item.description }}</span>
+          <button @click="deleteTask(index)">X</button>
         </li>
       </transition-group>
     </ul>
@@ -43,17 +43,17 @@ export default {
       }).length;
     },
 
-    toggleCompleted: function(item) {
-      item.completed = ! item.completed;
-    },
-
     inProgress: function(item) {
       return ! item.completed;
     },
 
     deleteTask: function(index) {
-      this.$emit('delete', index);
-    }
+      this.$emit('deleteTask', index);
+    },
+
+    toggleCompleted: function(id) {
+      this.$emit('toggleCompleted', id);
+    },
   }
 };
 </script>
