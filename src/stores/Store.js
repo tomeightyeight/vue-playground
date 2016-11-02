@@ -49,6 +49,9 @@ const Store = new Vuex.Store({
       task.completed = ! task.completed;
     },
 
+    /**
+     * Replace all tasks within the store
+     */
     [REPLACE_TASKS]: function(state, payload) {
       state.tasks = payload.tasks;
     }
