@@ -9,8 +9,10 @@ import {
   ADD_TASK,
   DELETE_TASK,
   TOGGLE_COMPLETED,
-  REPLACE_TASKS
-} from './MutationTypes';
+  REPLACE_TASKS,
+  FETCH_TASKS,
+  SAVE_TASKS
+} from './Types';
 
 Vue.use(VueResource);
 Vue.use(Vuex);
@@ -63,7 +65,7 @@ const Store = new Vuex.Store({
     /**
      * Fetcyh tasks from end point
      */
-    fetchTasks: function({ commit }) {
+    [FETCH_TASKS]: function({ commit }) {
       Vue.http.get('/api/tasks')
         .then(response => {
           commit(REPLACE_TASKS, response.body);
@@ -75,7 +77,7 @@ const Store = new Vuex.Store({
     /**
      * Persist tasks to server via end point
      */
-    saveTasks: function({ state }) {
+    [SAVE_TASKS]: function({ state }) {
       Vue.http.put('/api/tasks', state.tasks)
         .then(() => {
           alert('Task list saved!');

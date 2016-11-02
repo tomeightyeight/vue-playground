@@ -20,7 +20,9 @@ new Vue({
 
   template: '<App/>',
 
-  components: { App },
+  components: {
+    App
+  },
 
   // Global options for VueResource
   http: {
