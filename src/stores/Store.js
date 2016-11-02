@@ -29,6 +29,14 @@ export default new Vuex.Store({
     ]
   },
 
+  getters: {
+    totalCompleted (state) {
+      return state.tasks.filter(item => {
+        return ! item.completed;
+      }).length;
+    }
+  },
+
   mutations: {
     /**
      * Add a new task to the local store

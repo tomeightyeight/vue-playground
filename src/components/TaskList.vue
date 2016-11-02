@@ -28,7 +28,7 @@ export default {
 
   computed: {
     remaining () {
-      return this.totalCompleted();
+      return this.$store.getters.totalCompleted;
     },
 
     total () {
@@ -37,12 +37,6 @@ export default {
   },
 
   methods: {
-    totalCompleted () {
-      return this.tasks.filter(item => {
-        return ! item.completed;
-      }).length;
-    },
-
     inProgress (item) {
       return ! item.completed;
     },
