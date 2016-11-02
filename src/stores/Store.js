@@ -1,8 +1,16 @@
 'use strict';
 
-import uuid from '../utils/uuid.js';
+import uuid from '../utils/uuid';
 import Vuex from 'vuex';
 import Vue from 'vue';
+
+import {
+  ADD_TASK,
+  DELETE_TASK,
+  TOGGLE_COMPLETED,
+  FETCH_TASKS,
+  SAVE_TASKS
+} from './MutationTypes';
 
 Vue.use(Vuex);
 
@@ -19,7 +27,7 @@ const Store = new Vuex.Store({
     /**
      * Add a new task to the local store
      */
-    addTask: function(state, payload) {
+    [ADD_TASK]: function(state, payload) {
       state.tasks.push({
         id: uuid(),
         description: payload.description,
@@ -30,14 +38,14 @@ const Store = new Vuex.Store({
     /**
      * Delete a task from the local store by index
      */
-    deleteTask: function(state, payload) {
+    [DELETE_TASK]: function(state, payload) {
       state.tasks.splice(payload.index, 1);
     },
 
     /**
      * Toggle the completed state of a specific task
      */
-    toggleCompleted: function(state, payload) {
+    [TOGGLE_COMPLETED]: function(state, payload) {
       let task = state.tasks.find(item => item.id == payload.id);
       task.completed = ! task.completed;
     },
@@ -45,7 +53,7 @@ const Store = new Vuex.Store({
     /**
      * Fetch tasks from end point
      */
-    fetchTasks: function(state) {
+    [FETCH_TASKS]: function(state) {
       this.$http.get('/api/tasks')
         .then(response => {
           state.tasks = response.body;
@@ -57,7 +65,7 @@ const Store = new Vuex.Store({
     /**
      * Persist tasks to server via end point
      */
-    saveTasks: function(state) {
+    [SAVE_TASKS]: function(state) {
       this.$http.put('/api/tasks', state.tasks)
         .then(() => {
           alert('Task list saved!');
