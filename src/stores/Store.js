@@ -1,6 +1,7 @@
 'use strict';
 
 import uuid from '../utils/uuid';
+import VueResource from 'vue-resource';
 import Vuex from 'vuex';
 import Vue from 'vue';
 
@@ -11,6 +12,7 @@ import {
   REPLACE_TASKS
 } from './MutationTypes';
 
+Vue.use(VueResource);
 Vue.use(Vuex);
 
 const Store = new Vuex.Store({
@@ -59,10 +61,10 @@ const Store = new Vuex.Store({
 
   actions: {
     /**
-     * Fetch tasks from end point
+     * Fetcyh tasks from end point
      */
     fetchTasks: function({ commit }) {
-      this.$http.get('/api/tasks')
+      Vue.http.get('/api/tasks')
         .then(response => {
           commit(REPLACE_TASKS, response.body);
         }, error => {
@@ -74,7 +76,7 @@ const Store = new Vuex.Store({
      * Persist tasks to server via end point
      */
     saveTasks: function({ state }) {
-      this.$http.put('/api/tasks', state.tasks)
+      Vue.http.put('/api/tasks', state.tasks)
         .then(() => {
           alert('Task list saved!');
         }, error => {
