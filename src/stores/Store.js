@@ -6,13 +6,16 @@ import Vuex from 'vuex';
 import Vue from 'vue';
 
 import {
+  fetchTasks,
+  saveTasks
+} from './Actions';
+
+import {
   ADD_TASK,
   DELETE_TASK,
   TOGGLE_COMPLETED,
   REPLACE_TASKS,
-  FETCH_TASKS,
-  SAVE_TASKS
-} from './Types';
+} from './MutationTypes';
 
 Vue.use(VueResource);
 Vue.use(Vuex);
@@ -20,9 +23,9 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     tasks: [
-      // { id: uuid(), description: 'Task 1', completed: false },
-      // { id: uuid(), description: 'Task 2', completed: false },
-      // { id: uuid(), description: 'Task 3', completed: true }
+      { id: uuid(), description: 'Task 1', completed: false },
+      { id: uuid(), description: 'Task 2', completed: false },
+      { id: uuid(), description: 'Task 3', completed: true }
     ]
   },
 
@@ -49,7 +52,7 @@ export default new Vuex.Store({
      * Toggle the completed state of a specific task
      */
     [TOGGLE_COMPLETED] (state, payload) {
-      const task = state.tasks.find(item => item.id == payload.id);
+      const task = state.tasks.find(item => item.id === payload.id);
       task.completed = ! task.completed;
     },
 
@@ -62,28 +65,7 @@ export default new Vuex.Store({
   },
 
   actions: {
-    /**
-     * Fetcyh tasks from end point
-     */
-    [FETCH_TASKS] ({ commit }) {
-      Vue.http.get('/api/tasks')
-        .then(response => {
-          commit(REPLACE_TASKS, response.body);
-        }, error => {
-          console.log(error);
-        });
-    },
-
-    /**
-     * Persist tasks to server via end point
-     */
-    [SAVE_TASKS] ({ state }) {
-      Vue.http.put('/api/tasks', state.tasks)
-        .then(() => {
-          alert('Task list saved!');
-        }, error => {
-          console.log(error);
-        });
-    }
+    fetchTasks,
+    saveTasks
   }
 });
