@@ -21,7 +21,7 @@ export default {
     TaskList
   },
 
-  data: function() {
+  data () {
     return {
       privateState: {
         newTask: ''
@@ -30,7 +30,7 @@ export default {
   },
 
   computed: {
-    localComputed: function() {
+    localComputed () {
       //
     },
 
@@ -40,7 +40,7 @@ export default {
   },
 
   methods: {
-    addTask: function() {
+    addTask () {
       if (this.privateState.newTask === '') {
         return;
       }
@@ -54,25 +54,25 @@ export default {
       this.privateState.newTask = '';
     },
 
-    deleteTask: function(index) {
+    deleteTask (index) {
       this.$store.commit({
         type: 'deleteTask',
         index: index
       });
     },
 
-    toggleCompleted: function(id) {
+    toggleCompleted (id) {
       this.$store.commit({
         type: 'toggleCompleted',
         id: id
       });
     },
 
-    fetch: function() {
+    fetch () {
       this.$store.dispatch('fetchTasks');
     },
 
-    save: function() {
+    save () {
       this.$store.dispatch('saveTasks');
     }
   }

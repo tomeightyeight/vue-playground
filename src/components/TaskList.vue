@@ -27,31 +27,31 @@ export default {
   props: ['tasks'],
 
   computed: {
-    remaining: function() {
+    remaining () {
       return this.totalCompleted();
     },
 
-    total: function() {
+    total () {
       return this.tasks.length;
     }
   },
 
   methods: {
-    totalCompleted: function() {
+    totalCompleted () {
       return this.tasks.filter(item => {
         return ! item.completed;
       }).length;
     },
 
-    inProgress: function(item) {
+    inProgress (item) {
       return ! item.completed;
     },
 
-    deleteTask: function(index) {
+    deleteTask (index) {
       this.$emit('deleteTask', index);
     },
 
-    toggleCompleted: function(id) {
+    toggleCompleted (id) {
       this.$emit('toggleCompleted', id);
     },
   }

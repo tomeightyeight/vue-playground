@@ -30,7 +30,7 @@ const Store = new Vuex.Store({
     /**
      * Add a new task to the local store
      */
-    [ADD_TASK]: function(state, payload) {
+    [ADD_TASK] (state, payload) {
       state.tasks.push({
         id: uuid(),
         description: payload.description,
@@ -41,14 +41,14 @@ const Store = new Vuex.Store({
     /**
      * Delete a task from the local store by index
      */
-    [DELETE_TASK]: function(state, payload) {
+    [DELETE_TASK] (state, payload) {
       state.tasks.splice(payload.index, 1);
     },
 
     /**
      * Toggle the completed state of a specific task
      */
-    [TOGGLE_COMPLETED]: function(state, payload) {
+    [TOGGLE_COMPLETED] (state, payload) {
       let task = state.tasks.find(item => item.id == payload.id);
       task.completed = ! task.completed;
     },
@@ -56,7 +56,7 @@ const Store = new Vuex.Store({
     /**
      * Replace all tasks within the store
      */
-    [REPLACE_TASKS]: function(state, payload) {
+    [REPLACE_TASKS] (state, payload) {
       state.tasks = payload.tasks;
     }
   },
@@ -65,7 +65,7 @@ const Store = new Vuex.Store({
     /**
      * Fetcyh tasks from end point
      */
-    [FETCH_TASKS]: function({ commit }) {
+    [FETCH_TASKS] ({ commit }) {
       Vue.http.get('/api/tasks')
         .then(response => {
           commit(REPLACE_TASKS, response.body);
@@ -77,7 +77,7 @@ const Store = new Vuex.Store({
     /**
      * Persist tasks to server via end point
      */
-    [SAVE_TASKS]: function({ state }) {
+    [SAVE_TASKS] ({ state }) {
       Vue.http.put('/api/tasks', state.tasks)
         .then(() => {
           alert('Task list saved!');

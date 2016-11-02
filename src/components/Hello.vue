@@ -15,7 +15,7 @@ export default {
   },
 
   computed: {
-    name: function() {
+    name () {
       if (typeof this.$route.params.name !== 'undefined') {
         return this.$route.params.name;
       }
