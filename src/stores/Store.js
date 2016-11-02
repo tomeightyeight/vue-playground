@@ -1,57 +1,65 @@
 'use strict';
 
 import uuid from '../utils/uuid.js';
+import Vuex from 'vuex';
+import Vue from 'vue';
 
-export default {
+Vue.use(Vuex);
+
+const Store = new Vuex.Store({
   state: {
     tasks: [
-      // { id: uuid(), description: 'Task 1', completed: false },
-      // { id: uuid(), description: 'Task 2', completed: false },
-      // { id: uuid(), description: 'Task 3', completed: true }
+      { id: uuid(), description: 'Task 1', completed: false },
+      { id: uuid(), description: 'Task 2', completed: false },
+      { id: uuid(), description: 'Task 3', completed: true }
     ]
   },
 
-  /**
-   * Add a new task to the local store
-   */
-  addTask: function(description, completed = false) {
-    this.state.tasks.push({
-      id: uuid(),
-      description: description,
-      completed: completed
-    });
-  },
-
-  /**
-   * Delete a task from the local store by ID
-   */
-  deleteTask: function(id) {
-    this.state.tasks = this.state.tasks.filter(item => {
-      return item.id !== id;
-    });
-  },
-
-  /**
-   * Fetch tasks from end point
-   */
-  fetchTasks: function() {
-    this.$http.get('/api/tasks')
-      .then(response => {
-        this.state.tasks = response.body;
-      }, error => {
-        console.log(error);
+  mutations: {
+    /**
+     * Add a new task to the local store
+     */
+    addTask: function(state, payload) {
+      state.tasks.push({
+        id: uuid(),
+        description: payload.description,
+        completed: payload.completed
       });
-  },
+    },
 
-  /**
-   * Persist tasks to server via end point
-   */
-  saveTasks: function() {
-    this.$http.put('/api/tasks', this.state.tasks)
-      .then(() => {
-        alert('Task list saved!');
-      }, error => {
-        console.log(error);
+    /**
+     * Delete a task from the local store by ID
+     */
+    deleteTask: function(state, payload) {
+      state.tasks = state.tasks.filter(item => {
+        return item.id !== payload.id;
       });
+    },
+
+    /**
+     * Fetch tasks from end point
+     */
+    fetchTasks: function(state) {
+      this.$http.get('/api/tasks')
+        .then(response => {
+          state.tasks = response.body;
+        }, error => {
+          console.log(error);
+        });
+    },
+
+    /**
+     * Persist tasks to server via end point
+     */
+    saveTasks: function(state) {
+      this.$http.put('/api/tasks', state.tasks)
+        .then(() => {
+          alert('Task list saved!');
+        }, error => {
+          console.log(error);
+        });
+    }
   }
-};
+});
+
+export default Store;

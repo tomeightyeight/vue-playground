@@ -1,6 +1,6 @@
 <template>
   <div>
-    <task-list :tasks="sharedState.tasks" @delete="deleteTask"></task-list>
+    <task-list :tasks="tasks" @delete="deleteTask"></task-list>
     <input v-model="privateState.newTask">
     <button @click="addTask">Add</button>
     <button @click="fetch">Fetch</button>
@@ -12,7 +12,7 @@
 'use strict';
 
 import TaskList from '../components/TaskList.vue';
-import Store from '../stores/Store';
+import { mapState } from 'vuex';
 
 export default {
   name: 'task-list-view',
@@ -27,8 +27,18 @@ export default {
         newTask: ''
       },
 
-      sharedState: Store.state
+      tasks: []
     };
+  },
+
+  computed: {
+    localComputed() {
+      //
+    },
+
+    ...mapState([
+      'tasks'
+    ])
   },
 
   methods: {
@@ -37,21 +47,28 @@ export default {
         return;
       }
 
-      Store.addTask(this.privateState.newTask, false);
+      this.$store.commit({
+        type: 'addTask',
+        description: this.privateState.newTask,
+        completed: false
+      });
 
       this.privateState.newTask = '';
     },
 
     deleteTask: function(id) {
-      Store.deleteTask(id);
+      this.$store.commit({
+        type: 'deleteTask',
+        id: id
+      });
     },
 
     fetch: function() {
-      Store.fetchTasks();
+      this.$store.commit('fetchTasks');
     },
 
     save: function() {
-      Store.saveTasks();
+      this.$store.commit('saveTasks');
     }
   }
 };
