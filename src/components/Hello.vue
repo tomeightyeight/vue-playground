@@ -1,9 +1,18 @@
 <template>
   <div>
+    <header>
+      <slot name="header">
+        Here is some fallback content for the slot
+      </slot>
+    </header>
+
     <p>Hello, {{ name }}</p>
-    <slot>
-      Here is some fallback content for the slot
-    </slot>
+
+    <footer>
+      <slot name="footer">
+        Here is some fallback content for the slot
+      </slot>
+    </footer>
   </div>
 </template>
 

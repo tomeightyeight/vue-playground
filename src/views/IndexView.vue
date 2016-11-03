@@ -1,5 +1,8 @@
 <template>
-  <hello>Here is some slot content</hello>
+  <hello>
+    <h1 slot="header">Here is some slot content</h1>
+    <p slot="footer">Here is some slot content</p>
+  </hello>
 </template>
 
 <script>
