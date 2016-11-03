@@ -11,27 +11,28 @@ export default new VueRouter({
   routes: [
     {
       path: '/',
-      // name: 'Index',
+      name: 'Index',
       component: IndexView
     },
 
     {
       path: '/hello/:name',
-      // name: 'HelloWorld',
+      name: 'HelloWorld',
       component: IndexView
     },
 
     {
       path: '/task-list',
-      // name: 'TaskList',
+      name: 'TaskList',
       component: TaskListView
     },
 
     {
       path: '/async',
-      // name: 'Async',
+      name: 'Async',
       component: function(resolve) {
         // Webpack creates a seperate bundle with code splitting
+        // and handles the async loading via JSONP for us
         require(['../views/AsyncView.vue'], resolve);
       }
     },
