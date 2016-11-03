@@ -24,9 +24,9 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     tasks: [
-      { id: uuid(), title: 'Task 1', completed: false },
-      { id: uuid(), title: 'Task 2', completed: false },
-      { id: uuid(), title: 'Task 3', completed: true }
+      // { id: uuid(), title: 'Task 1', completed: false },
+      // { id: uuid(), title: 'Task 2', completed: false },
+      // { id: uuid(), title: 'Task 3', completed: true }
     ]
   },
 
