@@ -15,6 +15,7 @@ import {
   DELETE_TASK,
   TOGGLE_COMPLETED,
   REPLACE_TASKS,
+  CLEAR_TASKS
 } from './MutationTypes';
 
 Vue.use(VueResource);
@@ -65,10 +66,17 @@ export default new Vuex.Store({
     },
 
     /**
-     * Replace all tasks within the store
+     * Replace all tasks within the local store
      */
     [REPLACE_TASKS] (state, payload) {
       state.tasks = payload.tasks;
+    },
+
+    /**
+     * Remove all tasks from the local store
+     */
+    [CLEAR_TASKS] (state) {
+      state.tasks = [];
     }
   },
 

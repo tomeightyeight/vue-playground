@@ -5,6 +5,7 @@
     <button @click="addTask">Add</button>
     <button @click="fetch">Fetch</button>
     <button @click="save">Save</button>
+    <button @click="clear">Clear</button>
   </div>
 </template>
 
@@ -74,6 +75,10 @@ export default {
 
     save () {
       this.$store.dispatch('saveTasks');
+    },
+
+    clear () {
+      this.$store.commit('clearTasks');
     }
   }
 };
