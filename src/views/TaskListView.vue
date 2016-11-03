@@ -47,7 +47,7 @@ export default {
 
       this.$store.commit({
         type: 'addTask',
-        description: this.privateState.newTask,
+        title: this.privateState.newTask,
         completed: false
       });
 

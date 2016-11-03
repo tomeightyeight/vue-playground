@@ -1,6 +1,7 @@
 'use strict';
 
 import uuid from '../utils/uuid';
+import VueResource from 'vue-resource';
 import Vuex from 'vuex';
 import Vue from 'vue';
 
@@ -16,14 +17,15 @@ import {
   REPLACE_TASKS,
 } from './MutationTypes';
 
+Vue.use(VueResource);
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     tasks: [
-      { id: uuid(), description: 'Task 1', completed: false },
-      { id: uuid(), description: 'Task 2', completed: false },
-      { id: uuid(), description: 'Task 3', completed: true }
+      { id: uuid(), title: 'Task 1', completed: false },
+      { id: uuid(), title: 'Task 2', completed: false },
+      { id: uuid(), title: 'Task 3', completed: true }
     ]
   },
 
@@ -42,7 +44,7 @@ export default new Vuex.Store({
     [ADD_TASK] (state, payload) {
       state.tasks.push({
         id: uuid(),
-        description: payload.description,
+        title: payload.title,
         completed: payload.completed
       });
     },

@@ -8,7 +8,7 @@
             v-for="(item, index) in tasks"
             :key="item.id"
         >
-          <span @click="toggleCompleted(item.id)">{{ item.description }}</span>
+          <span @click="toggleCompleted(item.id)">{{ item.title }}</span>
           <button @click="deleteTask(index)">X</button>
         </li>
       </transition-group>
