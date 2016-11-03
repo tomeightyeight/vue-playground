@@ -7,6 +7,9 @@
       <li>
         <router-link to="/task-list">Task List</router-link>
       </li>
+      <li>
+        <router-link to="/async">Async</router-link>
+      </li>
     </ul>
     <router-view></router-view>
   </div>

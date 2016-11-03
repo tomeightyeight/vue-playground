@@ -9,9 +9,37 @@ export default new VueRouter({
   mode: 'history',
 
   routes: [
-    { path: '/', component: IndexView },
-    { path: '/hello/:name', component: IndexView },
-    { path: '/task-list', component: TaskListView },
-    { path: '*', component: IndexView }
+    {
+      path: '/',
+      // name: 'Index',
+      component: IndexView
+    },
+
+    {
+      path: '/hello/:name',
+      // name: 'HelloWorld',
+      component: IndexView
+    },
+
+    {
+      path: '/task-list',
+      // name: 'TaskList',
+      component: TaskListView
+    },
+
+    {
+      path: '/async',
+      // name: 'Async',
+      component: function(resolve) {
+        // Webpack creates a seperate bundle with code splitting
+        require(['../views/AsyncView.vue'], resolve);
+      }
+    },
+
+    {
+      path: '*',
+      name: '404',
+      component: IndexView
+    }
   ]
 });
