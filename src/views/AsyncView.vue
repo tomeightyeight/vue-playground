@@ -1,5 +1,5 @@
 <template>
-  <async></async>
+  <async/>
 </template>
 
 <script>
