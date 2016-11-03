@@ -37,10 +37,6 @@ export default {
   },
 
   methods: {
-    inProgress (item) {
-      return ! item.completed;
-    },
-
     deleteTask (index) {
       this.$emit('deleteTask', index);
     },
