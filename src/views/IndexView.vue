@@ -1,5 +1,5 @@
 <template>
-  <hello></hello>
+  <hello>Here is some slot content</hello>
 </template>
 
 <script>

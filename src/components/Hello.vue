@@ -1,5 +1,10 @@
 <template>
-  <div>Hello, {{ name }}</div>
+  <div>
+    <p>Hello, {{ name }}</p>
+    <slot>
+      Here is some fallback content for the slot
+    </slot>
+  </div>
 </template>
 
 <script>
