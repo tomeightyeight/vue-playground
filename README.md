@@ -8,6 +8,7 @@ The application has been built using the following key technologies:
 
 - Vue.js
 - Vue Router
+- Vue Resource
 - Vuex
 - Webpack
 
