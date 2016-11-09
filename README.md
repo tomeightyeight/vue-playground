@@ -1,6 +1,15 @@
 # vue-todo
 
-> A Vue.js project
+Welcome to the Vue-Todo documentation. This is a single page application written in ES6 which demonstrates Vue.js and other related libraries.
+
+## Summary of Technologies Used
+
+The application has been built using the following key technologies:
+
+- Vue.js
+- Vue Router
+- Vuex
+- Webpack
 
 ## Build Setup
 
@@ -25,3 +34,7 @@ npm test
 ```
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+
+## Copyright and Licence
+This application has been written by Tom Humphris and is released under the MIT License.
