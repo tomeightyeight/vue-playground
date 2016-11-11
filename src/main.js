@@ -1,6 +1,7 @@
 'use strict';
 
 import './polyfills/Array.find';
+import 'whatwg-fetch';
 
 import Vue from 'vue';
 import VueRouter from 'vue-router';
