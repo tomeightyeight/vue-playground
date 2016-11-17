@@ -1,6 +1,8 @@
 'use strict';
 
-import { REPLACE_TASKS } from './MutationTypes';
+import { 
+  REPLACE_TASKS 
+} from './MutationTypes';
 
 /**
  * Fetch tasks from end point
@@ -17,7 +19,7 @@ export const fetchTasks = function ({ commit }) {
     });
   })
   .catch(error => {
-    console.log(error);
+    console.warn(error);
   });
 };
 
@@ -33,6 +35,6 @@ export const saveTasks = function ({ state }) {
     console.log('task list saved');
   })
   .catch(error => {
-    console.log(error);
+    console.warn(error);
   });
 };
