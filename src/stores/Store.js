@@ -1,7 +1,6 @@
 'use strict';
 
 import uuid from '../utils/uuid';
-import VueResource from 'vue-resource';
 import Vuex from 'vuex';
 import Vue from 'vue';
 
