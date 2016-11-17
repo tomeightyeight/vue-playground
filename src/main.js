@@ -23,13 +23,5 @@ new Vue({
 
   components: {
     App
-  },
-
-  // Global options for VueResource
-  http: {
-    root: '',
-    headers: {
-      //
-    }
   }
 }).$mount('#app');
