@@ -1,6 +1,6 @@
 <template>
   <div>
-    <task-list :tasks="tasks" @deleteTask="deleteTask" @toggleCompleted="toggleCompleted"></task-list>
+    <task-list :tasks="tasks"></task-list>
     <input v-model="privateState.newTask">
     <button @click="addTask">Add</button>
     <button @click="fetch">Fetch</button>
@@ -14,6 +14,11 @@
 
 import TaskList from '../components/TaskList.vue';
 import { mapState } from 'vuex';
+
+import {
+  ADD_TASK,
+  CLEAR_TASKS
+} from '../stores/MutationTypes';
 
 export default {
   name: 'task-list-view',
@@ -47,26 +52,12 @@ export default {
       }
 
       this.$store.commit({
-        type: 'addTask',
+        type: ADD_TASK,
         title: this.privateState.newTask,
         completed: false
       });
 
       this.privateState.newTask = '';
-    },
-
-    deleteTask (index) {
-      this.$store.commit({
-        type: 'deleteTask',
-        index: index
-      });
-    },
-
-    toggleCompleted (id) {
-      this.$store.commit({
-        type: 'toggleCompleted',
-        id: id
-      });
     },
 
     fetch () {
@@ -78,7 +69,7 @@ export default {
     },
 
     clear () {
-      this.$store.commit('clearTasks');
+      this.$store.commit(CLEAR_TASKS);
     }
   }
 };

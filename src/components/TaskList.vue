@@ -21,6 +21,11 @@
 <script>
 'use strict';
 
+import {
+  DELETE_TASK,
+  TOGGLE_COMPLETED
+} from '../stores/MutationTypes';
+
 export default {
   name: 'task-list',
 
@@ -38,11 +43,17 @@ export default {
 
   methods: {
     deleteTask (index) {
-      this.$emit('deleteTask', index);
+      this.$store.commit({
+        type: DELETE_TASK,
+        index: index
+      });
     },
 
     toggleCompleted (id) {
-      this.$emit('toggleCompleted', id);
+      this.$store.commit({
+        type: TOGGLE_COMPLETED,
+        id: id
+      });
     },
   }
 };
